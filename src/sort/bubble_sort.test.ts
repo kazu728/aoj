@@ -3,8 +3,8 @@ import {
   generateInputValueBigArray,
   splitArrayLengthFromArray,
   sortByApi
-} from "./utility";
-import { sort } from "../sort/insertion_sort";
+} from "../utility";
+import { sort } from "./bubble_sort";
 
 test("should sort", () => {
   const input = generateInputValue();

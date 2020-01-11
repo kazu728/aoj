@@ -37,3 +37,11 @@ export const sortByApi = (array: number[]): number[] => {
     return 0;
   });
 };
+
+export const splitInputValue = (input: string) => {
+  const splittedValue: string[] = input.split(/\n/);
+  return [
+    parseInt(splittedValue[0]),
+    splittedValue[1].split(" ").map(e => parseInt(e))
+  ];
+};
