@@ -23,7 +23,7 @@ export const generateInputValueBigArray = (): string => {
   return generateInputValueFromLength(arrayLength);
 };
 
-export const splitArrayLengthFromArray = (input: string): number[] => {
+export const parseInputValue = (input: string): number[] => {
   return input
     .split(/\n/)[1]
     .split(" ")
@@ -45,3 +45,11 @@ export const splitInputValue = (input: string) => {
     splittedValue[1].split(" ").map(e => parseInt(e))
   ];
 };
+
+export const generateInputArray = (input: string): [number, number[]] => {
+  const inputSplitted: string[] = input.split(/\n/);
+  return [
+    parseInt(inputSplitted[0]),
+    inputSplitted[1].split(" ").map(e => parseInt(e))
+  ]
+}

@@ -1,8 +1,7 @@
-export const sort = (input: string) => {
-  const inputSplitted: string[] = input.split(/\n/);
+import { generateInputArray } from "../utility";
 
-  const arrayLength: number = parseInt(inputSplitted[0]);
-  const array = inputSplitted[1].split(" ").map(e => parseInt(e));
+export const sort = (input: string) => {
+  const [arrayLength, array] = generateInputArray(input)
 
   console.time("bubble_sort");
   let count = 0;
