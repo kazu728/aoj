@@ -7,3 +7,9 @@ p4 350
 p5 20`;
 
 excute(input);
+
+test("should be less than memory limit", () => {
+  const MEMORY_LIMIT = 65536000;
+  excute(input);
+  expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT);
+});
