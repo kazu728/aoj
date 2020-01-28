@@ -2,7 +2,7 @@
 
 
 # Algorhythm-learning
- - This reository is for my learing
+ - This reository is for my learning
 
 ### Data Struccture
 - [X] Stack
@@ -20,9 +20,8 @@
 - [ ] Counting sort
 
 ### Searching
-- [ ] Linear search
+- [x] Linear search
 - [ ] Binary search
-
 - [ ] Rooted trees
 - [ ] Binary tree
 - [ ] Tree walk

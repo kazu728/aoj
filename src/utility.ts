@@ -1,3 +1,5 @@
+type splittedInputType = [number, number[], number, number[]];
+
 const generateRandomNumber = () => Math.floor(Math.random() * Math.floor(10));
 
 const generateInputValueFromLength = (arrayLength: number) => {
@@ -51,5 +53,14 @@ export const generateInputArray = (input: string): [number, number[]] => {
   return [
     parseInt(inputSplitted[0]),
     inputSplitted[1].split(" ").map(e => parseInt(e))
-  ]
-}
+  ];
+};
+
+export const splitLengthWithArray = (input: string): splittedInputType =>
+  input
+    .split(/\n/)
+    .map((e: string, index) =>
+      index % 2 === 0
+        ? parseInt(e)
+        : e.split(" ").map((f: string) => parseInt(f))
+    ) as splittedInputType;
