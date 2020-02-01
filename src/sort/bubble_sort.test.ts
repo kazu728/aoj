@@ -11,7 +11,7 @@ test("should sort", () => {
   const input = generateInputValue();
   const array = parseInputValue(input);
 
-  expect(sortByApi(array)).toEqual(sort(input));
+  expect(sort(input)).toEqual(sortByApi(array));
   expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT);
 });
 
@@ -20,6 +20,6 @@ test("should sort big array", () => {
   const input = generateInputValueBigArray();
   const array = parseInputValue(input);
 
-  expect(sortByApi(array)).toEqual(sort(input));
+  expect(sort(input)).toEqual(sortByApi(array));
   expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT);
 });

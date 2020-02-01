@@ -1,26 +1,23 @@
 import { generateInputArray } from "../utility";
 
 export const sort = (input: string) => {
-  const [arrayLength, array] = generateInputArray(input)
+  const [length, array] = generateInputArray(input)
 
-  console.time("bubble_sort");
   let count = 0;
 
-  for (let i = 0; i < arrayLength; i++) {
-    for (let j = 0; j < arrayLength; j++) {
-      let value;
+  for (let i = 0; i < length; i++) {
+    for (let j = 0; j < length; j++) {
+      let swap;
 
       if (array[j + 1] < array[j]) {
-        value = array[j];
+        swap = array[j];
         array[j] = array[j + 1];
-        array[j + 1] = value;
+        array[j + 1] = swap;
 
         count += 1;
       }
     }
   }
-  console.log(`${array.join(" ")}\n${count}`);
-  console.timeEnd("bubble_sort");
 
   return array;
 };

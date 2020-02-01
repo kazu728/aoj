@@ -1,10 +1,9 @@
 import { generateInputArray } from "../utility";
 
 export const sort = (input: string) => {
-  const [arrayLength, array] = generateInputArray(input)
+  const [length, array] = generateInputArray(input)
 
-  console.time("insertion_sort");
-  for (let i = 0; i < arrayLength; i++) {
+  for (let i = 0; i < length; i++) {
     // current value
     let v = array[i];
     // prev index
@@ -17,6 +16,5 @@ export const sort = (input: string) => {
       console.log(array);
     }
   }
-  console.timeEnd("insertion_sort");
   return array;
 };
