@@ -28,11 +28,11 @@ const isFull = () => {
   return head === tail + 1;
 };
 
-const convertToObjectArray = (inputArray: string[]): any => {
+const convertToObjectArray = (inputArray: string[]): JobType[] => {
   return inputArray
     .filter(index => index)
     .map(e => {
-      const [key, value] = e.split(/\s/);
+      const [key, value] = e.split(/\s/).map((f, i) => i && parseInt(f));
       return { [key]: value };
     });
 };

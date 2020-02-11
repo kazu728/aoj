@@ -1,13 +1,14 @@
 ![](https://github.com/kzmat/algorhythm-learning/workflows/Node%20CI/badge.svg)
 
 
-# Algorhythm-learning
+# algorithms-learning
  - This reository is for my learning
 
 ### Data Struccture
 - [X] Stack
 - [X] Queue
 - [ ] Doubly Linked List
+- [x] Hash table
 
 ### Sorting
 - [X] Insertion sort
@@ -28,15 +29,12 @@
 - [ ] Binary search tree1
 - [ ] Binary search tree2
 - [ ] Binary search tree3
+- [ ] Exhaustive searcch
 
 
 ### TODO
 
 - [ ] Partition
-
-
-- [ ] Dictionary
-- [ ] Exhaustive searcch
 - [ ] Complete binary tree
 - [ ] Maximum heap
 - [ ] Priority queue
@@ -48,20 +46,3 @@
 - [ ] Depth first searh
 - [ ] Breadth first search
 - [ ] Connected components
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

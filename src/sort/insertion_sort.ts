@@ -4,9 +4,7 @@ export const sort = (input: string) => {
   const [length, array] = generateInputArray(input)
 
   for (let i = 0; i < length; i++) {
-    // current value
     let v = array[i];
-    // prev index
     let j = i - 1;
 
     while (j >= 0 && array[j] > v) {
