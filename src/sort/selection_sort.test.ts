@@ -1,24 +1,24 @@
 import {
   generateInputValue,
   generateInputValueBigArray,
-  parseInputValue,
+  generateInputArray,
   sortByApi
 } from "../utility";
 import { sort } from "./selection_sort";
 
+const MEMORY_LIMIT = 65536000;
+
 test("should sort", () => {
-  const MEMORY_LIMIT = 65536000;
   const input = generateInputValue();
-  const array = parseInputValue(input);
+  const array = generateInputArray(input)[1];
 
   expect(sort(input)).toEqual(sortByApi(array));
   expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT);
 });
 
 test("should sort big array", () => {
-  const MEMORY_LIMIT = 65536000;
   const input = generateInputValueBigArray();
-  const array = parseInputValue(input);
+  const array = generateInputArray(input)[1];
 
   expect(sort(input)).toEqual(sortByApi(array));
   expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT);

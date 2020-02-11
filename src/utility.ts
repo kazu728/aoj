@@ -46,19 +46,6 @@ export const generateInputValueBigArray = (): string => {
  * e.g.
  * input  6
  *        5 2 4 6 1 3
- * output [5, 2, 4, 6, 1, 3]
- */
-export const parseInputValue = (input: string): number[] => {
-  return input
-    .split(/\n/)[1]
-    .split(" ")
-    .map(e => parseInt(e));
-};
-
-/**
- * e.g.
- * input  6
- *        5 2 4 6 1 3
  * output [6, [5, 2, 4, 6, 1, 3]]
  */
 export const generateInputArray = (input: string): [number, number[]] => {
