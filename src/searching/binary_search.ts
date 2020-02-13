@@ -7,10 +7,9 @@ const search = (n: number, S: number[], key: number): boolean => {
   console.log(n, S, key);
 
   while (left < right) {
-    let mid = (left + right) / 2;
+    let mid = Math.floor( (left + right) / 2);
     if (S[mid] === key) return true;
     if (key < S[mid]) {
-      // right = 10
       right = mid;
     }
     if (S[mid] < key) {
@@ -29,6 +28,5 @@ export const main = (input: string) => {
   for (let i = 0; i < q; i++) {
     if (search(n, S, T[i])) sum++;
   }
-
-  console.log(sum);
+  return sum
 };
