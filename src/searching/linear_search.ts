@@ -15,6 +15,5 @@ export const main = (input: string) => {
   for (let i = 0; i < q; i++) {
     search(A, n, key[i]) && a++;
   }
-  console.log(a);
   return a;
 };

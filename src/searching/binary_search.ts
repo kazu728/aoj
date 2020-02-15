@@ -4,8 +4,6 @@ const search = (n: number, S: number[], key: number): boolean => {
   let left = 0;
   let right = n;
 
-  console.log(n, S, key);
-
   while (left < right) {
     let mid = Math.floor( (left + right) / 2);
     if (S[mid] === key) return true;

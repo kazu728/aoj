@@ -13,7 +13,7 @@
     "typescript": "^3.7.4"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --silent=false --verbose"
   },
   "keywords": [],
   "author": "",

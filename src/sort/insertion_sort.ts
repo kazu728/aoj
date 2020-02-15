@@ -11,7 +11,6 @@ export const sort = (input: string) => {
       array[j + 1] = array[j];
       j--;
       array[j + 1] = v;
-      console.log(array);
     }
   }
   return array;

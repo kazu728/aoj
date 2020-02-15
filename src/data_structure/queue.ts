@@ -1,6 +1,4 @@
-type JobType = {
-  [key: string]: number;
-};
+type JobType = { [key: string]: number };
 
 let head = 0;
 let tail = 0;
@@ -20,17 +18,12 @@ const dequeue = (): JobType => {
   return queue[head - 1];
 };
 
-const isEmpty = () => {
-  return head === tail;
-};
+const isEmpty = () => head === tail;
+const isFull = () => head === tail + 1;
 
-const isFull = () => {
-  return head === tail + 1;
-};
-
-const convertToObjectArray = (inputArray: string[]): JobType[] => {
-  return inputArray
-    .filter(index => index)
+const toObjectArray = (array: string[]): JobType[] => {
+  return array
+    .filter(i => i)
     .map(e => {
       const [key, value] = e.split(/\s/).map((f, i) => i && parseInt(f));
       return { [key]: value };
@@ -58,15 +51,14 @@ const roundrobin = (quantum: number) => {
         remainder = Math.abs(calculateResult);
         time += quantum - remainder;
       }
-      console.log(`${key} ${time}`);
     }
   }
 };
 
 export const excute = (input: string) => {
-  const inputArray = input.split("\n");
-  const [length, quantum] = inputArray[0].split(" ").map(e => parseInt(e));
-  const array = convertToObjectArray(inputArray);
+  const inputs = input.split("\n");
+  const [length, quantum] = inputs[0].split(" ").map(e => parseInt(e));
+  const array = toObjectArray(inputs);
 
   initialize(length, array);
   roundrobin(quantum);

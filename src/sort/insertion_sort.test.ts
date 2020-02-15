@@ -6,14 +6,11 @@ import {
 } from "../utility";
 import { sort } from "./insertion_sort";
 
-const MEMORY_LIMIT = 65536000;
-
 test("should sort", () => {
   const input = generateInputValue();
   const array = generateInputArray(input)[1]
 
   expect(sort(input)).toEqual(sortByApi(array));
-  expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT);
 });
 
 test("should sort big array", () => {
@@ -21,5 +18,4 @@ test("should sort big array", () => {
   const array = generateInputArray(input)[1]
 
   expect(sort(input)).toEqual(sortByApi(array));
-  expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT);
 });

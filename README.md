@@ -22,7 +22,7 @@
 
 ### Searching
 - [x] Linear search
-- [ ] Binary search
+- [x] Binary search
 - [ ] Rooted trees
 - [ ] Binary tree
 - [ ] Tree walk
