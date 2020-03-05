@@ -7,7 +7,7 @@
 ### Data Struccture
 - [X] Stack
 - [X] Queue
-- [ ] Doubly Linked List
+- [x] Doubly Linked List
 - [x] Hash table
 
 ### Sorting
@@ -29,7 +29,7 @@
 - [ ] Binary search tree1
 - [ ] Binary search tree2
 - [ ] Binary search tree3
-- [ ] Exhaustive searcch
+- [x] Exhaustive searcch
 
 
 ### TODO
