@@ -1,10 +1,10 @@
-import { generateInputArray } from "../utility";
+import { generateInputArray } from '../utility';
 
 export const sort = (input: string) => {
-  const [length, array] = generateInputArray(input)
+  const [length, array] = generateInputArray(input);
 
   for (let i = 0; i < length; i++) {
-    let v = array[i];
+    const v = array[i];
     let j = i - 1;
 
     while (j >= 0 && array[j] > v) {

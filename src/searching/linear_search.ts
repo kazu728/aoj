@@ -1,4 +1,4 @@
-import { splitLengthWithArray } from "../utility";
+import { splitLengthWithArray } from '../utility';
 
 const search = (A: number[], n: number, key: number): boolean => {
   let i = 0;

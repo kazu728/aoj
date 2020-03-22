@@ -1,4 +1,5 @@
-import { excute } from "./queue";
+import { excute } from './queue';
+
 const input = `5 100 
 p1 150
 p2 80
@@ -8,6 +9,6 @@ p5 20`;
 
 excute(input);
 
-test("should be less than memory limit", () => {
+test('should be less than memory limit', () => {
   excute(input);
 });

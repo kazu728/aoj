@@ -1,6 +1,4 @@
 export class Node {
-  // type node = number | null
-
   constructor(
     private _key: number,
     private _prev: number,
@@ -22,6 +20,7 @@ export class Node {
   setNext(next: number) {
     this._next = next;
   }
+
   setprev(prev: number) {
     this._prev = prev;
   }

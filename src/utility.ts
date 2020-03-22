@@ -7,10 +7,7 @@ const generateInputValueFromLength = (length: number) => {
     array = [...array, generateRandomNumber()] as number[];
   }
 
-  return `${length.toString()}\n${array
-    .join()
-    .replace(/,/g, " ")
-    .trim()}`;
+  return `${length.toString()}\n${array.join().replace(/,/g, ' ').trim()}`;
 };
 
 export const sortByApi = (array: number[]): number[] =>
@@ -52,7 +49,7 @@ export const generateInputArray = (input: string): [number, number[]] => {
   const inputSplitted: string[] = input.split(/\n/);
   return [
     parseInt(inputSplitted[0]),
-    inputSplitted[1].split(" ").map(e => parseInt(e))
+    inputSplitted[1].split(' ').map((e) => parseInt(e)),
   ];
 };
 
@@ -71,6 +68,6 @@ export const splitLengthWithArray = (input: string) => {
     .map((e: string, index) =>
       index % 2 === 0
         ? parseInt(e)
-        : e.split(" ").map((f: string) => parseInt(f))
+        : e.split(' ').map((f: string) => parseInt(f))
     ) as splittedInputType;
 };

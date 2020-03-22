@@ -16,7 +16,7 @@
 - [X] Selection sort
 - [ ] Stable sort
 - [ ] Shell sort
-- [ ] Merge sort
+- [X] Merge sort
 - [ ] Quick sort
 - [ ] Counting sort
 

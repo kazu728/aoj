@@ -1,4 +1,4 @@
-import { main } from "./hash";
+import { main } from './hash';
 
 const input = `6
 insert AAA
@@ -9,10 +9,9 @@ insert CCC
 find CCC
 `;
 
-const convert = (output: string[]) => output.join("\n");
+const convert = (output: string[]): string => output.join('\n');
 const output: string[] = main(input);
 
-
 test('should search', () => {
-  expect(convert(output)).toEqual(`yes\nno\nyes`)
-})
+  expect(convert(output)).toEqual(`yes\nno\nyes`);
+});

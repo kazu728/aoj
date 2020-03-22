@@ -1,7 +1,7 @@
-import { generateInputArray } from "../utility";
+import { generateInputArray } from '../utility';
 
 export const sort = (input: string) => {
-  const [length, array] = generateInputArray(input)
+  const [length, array] = generateInputArray(input);
 
   let count = 0;
 
