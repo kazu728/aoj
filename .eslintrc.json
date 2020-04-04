@@ -39,6 +39,8 @@
     "import/prefer-default-export": "off",
     "no-plusplus":"off",
     "no-constant-condition":"off",
+    "no-console":"off",
+    "radix":"off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "import/extensions": [
       "error",

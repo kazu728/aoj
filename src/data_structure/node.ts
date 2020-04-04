@@ -6,22 +6,22 @@ export class Node {
   ) {}
 
   get key(): number {
-    return this._key;
+    return this._key
   }
 
   get prev(): number {
-    return this._prev;
+    return this._prev
   }
 
   get next(): number {
-    return this._next;
+    return this._next
   }
 
   setNext(next: number) {
-    this._next = next;
+    this._next = next
   }
 
   setprev(prev: number) {
-    this._prev = prev;
+    this._prev = prev
   }
 }
