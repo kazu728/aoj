@@ -9,6 +9,8 @@
 - [X] Queue
 - [x] Doubly Linked List
 - [x] Hash table
+- [ ] Maximum heap
+- [ ] Priority queue
 
 ### Sorting
 - [X] Insertion sort
@@ -23,26 +25,30 @@
 ### Searching
 - [x] Linear search
 - [x] Binary search
-- [ ] Rooted trees
+- [x] Exhaustive searcch
+- [ ] Depth first searh
+- [ ] Breadth first search
+
+
+### Tree
+- [x] Rooted trees
 - [ ] Binary tree
 - [ ] Tree walk
 - [ ] Binary search tree1
 - [ ] Binary search tree2
 - [ ] Binary search tree3
-- [x] Exhaustive searcch
+- [ ] Complete binary tree
+
 
 
 ### TODO
 
 - [ ] Partition
-- [ ] Complete binary tree
-- [ ] Maximum heap
-- [ ] Priority queue
+
+
 - [ ] Kocch curve
 - [ ] Fibonacci number
 - [ ] Longest common sequence
 - [ ] Matrix chain multiplication
 - [ ] Graph
-- [ ] Depth first searh
-- [ ] Breadth first search
 - [ ] Connected components

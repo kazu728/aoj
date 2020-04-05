@@ -40,6 +40,8 @@
     "no-plusplus":"off",
     "no-constant-condition":"off",
     "no-console":"off",
+    "no-underscore-dangle":"off",
+    "no-useless-constructor":"off",
     "radix":"off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "import/extensions": [
