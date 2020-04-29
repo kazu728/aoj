@@ -43,6 +43,8 @@
     "no-underscore-dangle":"off",
     "no-useless-constructor":"off",
     "radix":"off",
+    "no-unused-expressions": "off",
+    "no-nested-ternary": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "import/extensions": [
       "error",

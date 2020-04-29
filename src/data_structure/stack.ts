@@ -1,41 +1,41 @@
 let top = 0
 const stack: number[] = []
+const OPE_CODES = ['+', '-', '*', '/']
 
-export const excute = (input: string) => {
-  const isOpeCode = (e: string): boolean =>
-    e === '+' || e === '-' || e === '*' || e === '/'
+const isOpeCode = (e: string): boolean => OPE_CODES.includes(e)
 
-  const push = (element: string | number) => {
-    stack[++top] = typeof element === 'string' ? parseInt(element, 10) : element
+const push = (element: string | number) => {
+  stack[++top] = typeof element === 'string' ? parseInt(element, 10) : element
+}
+
+const pop = (): number => {
+  top--
+  return stack[top + 1]
+}
+
+const calculate = (element: string) => {
+  const a = pop()
+  const b = pop()
+
+  switch (element) {
+    case '+':
+      push(b + a)
+      break
+    case '-':
+      push(b - a)
+      break
+    case '*':
+      push(b * a)
+      break
+    case '/':
+      push(b * a)
+      break
+    default:
+      break
   }
+}
 
-  const pop = (): number => {
-    top--
-    return stack[top + 1]
-  }
-
-  const calculate = (element: string) => {
-    const a = pop()
-    const b = pop()
-
-    switch (element) {
-      case '+':
-        push(b + a)
-        break
-      case '-':
-        push(b - a)
-        break
-      case '*':
-        push(b * a)
-        break
-      case '/':
-        push(b * a)
-        break
-      default:
-        break
-    }
-  }
-
+export const main = (input: string) => {
   const inputArray = input.split(' ')
 
   for (let i = 0; i < inputArray.length; i++) {

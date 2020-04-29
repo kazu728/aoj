@@ -32,7 +32,7 @@
 
 ### Tree
 - [x] Rooted trees
-- [ ] Binary tree
+- [x] Binary tree
 - [ ] Tree walk
 - [ ] Binary search tree1
 - [ ] Binary search tree2
