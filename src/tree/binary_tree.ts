@@ -1,4 +1,5 @@
-import { Node } from './node/binary_tree'
+import { Node } from './node'
+import { generateNodeArray, setParent } from './utility'
 
 const nodes: Node[] = []
 const depth: number[] = []
@@ -43,22 +44,11 @@ const print = (n: number) => {
     : output('intenal node')
 }
 
-const generateNodeArray = (input: string): void => {
-  input
-    .split(/\n/)
-    .filter((_node, index) => index)
-    .map((a) => a.split(' ').map((b) => parseInt(b)))
-    .forEach((node) => nodes.push(new Node(node[0], node[1], node[2])))
-}
-
 export const main = (input: string) => {
   const root = 0
-  generateNodeArray(input)
-  for (let i = 0; i < nodes.length; i++) {
-    if (i === 0) nodes[i].setParent(-1)
-    if (!isLeftLeaf(i)) nodes[nodes[i].left].setParent(i)
-    if (!isRightLeaf(i)) nodes[nodes[i].right].setParent(i)
-  }
+  generateNodeArray(input, nodes).forEach((node, i) =>
+    setParent(node, i, nodes)
+  )
 
   setDepth(root, 0)
   setHight(0)

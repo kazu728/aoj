@@ -1,0 +1,1 @@
+export const MEMORY_LIMIT = 65536000
