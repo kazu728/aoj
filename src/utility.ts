@@ -71,10 +71,3 @@ export const splitLengthWithArray = (input: string) => {
         : e.split(' ').map((f: string) => parseInt(f))
     ) as splittedInputType
 }
-
-export const stringToNodeArray = (input: string): number[][] => {
-  return input
-    .split(/\n/)
-    .filter((_node, index) => index)
-    .map((a) => a.split(' ').map((b) => parseInt(b)))
-}

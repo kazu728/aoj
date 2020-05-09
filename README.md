@@ -1,54 +1,61 @@
 ![](https://github.com/kzmat/algorhythm-learning/workflows/Node%20CI/badge.svg)
 
-
 # algorithms-learning
- - This reository is for my learning
+- This reository is for my learning
 
 ### Data Struccture
-- [X] Stack
-- [X] Queue
+
+- [x] Stack
+- [x] Queue
 - [x] Doubly Linked List
 - [x] Hash table
 - [ ] Maximum heap
 - [ ] Priority queue
 
 ### Sorting
-- [X] Insertion sort
-- [X] Bubble sort
-- [X] Selection sort
+
+- [x] Insertion sort
+- [x] Bubble sort
+- [x] Selection sort
 - [x] Stable sort
 - [ ] Shell sort
-- [X] Merge sort
+- [x] Merge sort
 - [ ] Quick sort
 - [ ] Counting sort
 
 ### Searching
+
 - [x] Linear search
 - [x] Binary search
 - [x] Exhaustive searcch
 - [ ] Depth first searh
 - [ ] Breadth first search
 
-
 ### Tree
+
 - [x] Rooted trees
 - [x] Binary tree
 - [x] Tree walk
-- [ ] Binary search tree1
+- [x] Binary search tree1
 - [ ] Binary search tree2
 - [ ] Binary search tree3
 - [ ] Complete binary tree
 
-
-
-### TODO
-
-- [ ] Partition
-
+### Math
 
 - [ ] Kocch curve
 - [ ] Fibonacci number
-- [ ] Longest common sequence
+- [ ] Longest common Subsequence
 - [ ] Matrix chain multiplication
+
+### Graph
+
 - [ ] Graph
+
+### Uncategorized
 - [ ] Connected components
+- [ ] Partition
+
+
+
+

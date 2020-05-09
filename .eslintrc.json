@@ -45,6 +45,8 @@
     "radix":"off",
     "no-unused-expressions": "off",
     "no-nested-ternary": "off",
+    "no-undef-init": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "import/extensions": [
       "error",
