@@ -1,18 +1,9 @@
-class BinarySearchTreeNode {
-  constructor(
-    public key: number,
-    public left: BinarySearchTreeNode,
-    public right: BinarySearchTreeNode,
-    public parent: BinarySearchTreeNode
-  ) {}
-}
+import { BinarySearchTreeNode } from './node/binary_search_tree'
 
 let root: BinarySearchTreeNode
-const preorderList: number[] = []
-const inorderList: number[] = []
-
-export const getPreorderList = () => preorderList
-export const getInorderList = () => inorderList
+export const preorderList: number[] = []
+export const inorderList: number[] = []
+export const answerListIfItsExist: string[] = []
 
 const insert = (operand: number) => {
   let parentNode
@@ -43,6 +34,21 @@ const insert = (operand: number) => {
     : (parentNode.right = insertedNode)
 }
 
+const find = (operand: number) => {
+  let currentNode: BinarySearchTreeNode | null = root
+  let existsOperand = false
+
+  while (currentNode) {
+    if (operand === currentNode.key) {
+      existsOperand = true
+      break
+    }
+    currentNode =
+      currentNode.key < operand ? currentNode.right : currentNode.left
+  }
+  answerListIfItsExist.push(existsOperand ? 'yes' : 'no')
+}
+
 const preorder = (node: BinarySearchTreeNode) => {
   if (!node) return
   preorderList.push(node.key)
@@ -68,7 +74,11 @@ export const main = (input: string) => {
 
   instructions.forEach((instruction: string) => {
     const [opecode, operand] = instruction.split(' ')
-    opecode === 'insert' ? insert(parseInt(operand)) : push()
+    opecode === 'insert'
+      ? insert(parseInt(operand))
+      : opecode === 'find'
+      ? find(parseInt(operand))
+      : push()
   })
 
   return root

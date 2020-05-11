@@ -28,17 +28,16 @@
 - [x] Linear search
 - [x] Binary search
 - [x] Exhaustive searcch
-- [ ] Depth first searh
-- [ ] Breadth first search
+
 
 ### Tree
 
 - [x] Rooted trees
 - [x] Binary tree
 - [x] Tree walk
-- [x] Binary search tree1
-- [ ] Binary search tree2
-- [ ] Binary search tree3
+- [x] Binary search tree insert
+- [x] Binary search tree find
+- [ ] Binary search tree delete
 - [ ] Complete binary tree
 
 ### Math
@@ -51,6 +50,8 @@
 ### Graph
 
 - [ ] Graph
+- [ ] Depth first searh
+- [ ] Breadth first search
 
 ### Uncategorized
 - [ ] Connected components
