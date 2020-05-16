@@ -35,9 +35,7 @@
 - [x] Rooted trees
 - [x] Binary tree
 - [x] Tree walk
-- [x] Binary search tree insert
-- [x] Binary search tree find
-- [ ] Binary search tree delete
+- [x] Binary search tree 
 - [ ] Complete binary tree
 
 ### Math

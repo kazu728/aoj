@@ -3,7 +3,7 @@ import {
   main,
   preorderList,
   inorderList,
-  answerListIfItsExist,
+  answerList,
 } from './binary_search_tree'
 
 describe('binary search tree', () => {
@@ -32,7 +32,7 @@ print`
   })
 })
 
-describe('binary search tree find', () => {
+describe('binary search tree', () => {
   const input = `10
 insert 30
 insert 88
@@ -46,9 +46,41 @@ find 16`
 
   beforeAll(() => main(input))
 
-  test('should find', () => {
+  test('find', () => {
     const output = 'yes no'
-    expect(answerListIfItsExist.join(' ')).toEqual(output)
+    expect(answerList.join(' ')).toEqual(output)
+    expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT)
+  })
+})
+
+describe('binary search tree delete', () => {
+  const input = `18
+insert 8
+insert 2
+insert 3
+insert 7
+insert 22
+insert 1
+find 1
+find 2
+find 3
+find 4
+find 5
+find 6
+find 7
+find 8
+print
+delete 3
+delete 7
+print`
+
+  beforeAll(() => main(input))
+
+  test('should delete', () => {
+    expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT)
+  })
+
+  test('should delete', () => {
     expect(process.memoryUsage().heapUsed).toBeLessThan(MEMORY_LIMIT)
   })
 })
