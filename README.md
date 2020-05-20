@@ -36,7 +36,7 @@
 - [x] Binary tree
 - [x] Tree walk
 - [x] Binary search tree 
-- [ ] Complete binary tree
+- [x] Complete binary tree
 
 ### Math
 
