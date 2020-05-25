@@ -9,7 +9,7 @@
 - [x] Queue
 - [x] Doubly Linked List
 - [x] Hash table
-- [ ] Maximum heap
+- [x] Maximum heap
 - [ ] Priority queue
 
 ### Sorting
