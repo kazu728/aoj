@@ -41,7 +41,7 @@
 ### Math
 
 - [ ] Kocch curve
-- [ ] Fibonacci number
+- [x] Fibonacci number
 - [ ] Longest common Subsequence
 - [ ] Matrix chain multiplication
 
