@@ -3,6 +3,15 @@
 # algorithms-learning
 - This reository is for my learning
 
+# test
+```
+# Test all 
+deno test
+
+# Test indivusual argorithm
+deno test {{test_code_path}}
+```
+
 ### Data Struccture
 
 - [x] Stack
