@@ -5,7 +5,7 @@ export default function sort<T extends [number, inputElement[]]>(
 ): [inputElement[], number] {
   const [length, elements] = input;
 
-  let swappedcount: number = 0;
+  let swappedCount = 0;
   let swap: inputElement;
 
   for (let i = 0; i < length; i++) {
@@ -15,10 +15,10 @@ export default function sort<T extends [number, inputElement[]]>(
         elements[j] = elements[j + 1];
         elements[j + 1] = swap;
 
-        swappedcount++;
+        swappedCount++;
       }
     }
   }
 
-  return [elements, swappedcount];
+  return [elements, swappedCount];
 }
