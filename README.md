@@ -1,4 +1,4 @@
-![](https://github.com/kzmat/algorhythm-learning/workflows/Node%20CI/badge.svg)
+![](https://github.com/kzmat/algorhythm-learning/workflows/Deno%20CI/badge.svg)
 
 # algorithms-learning
 - This reository is for my learning
@@ -15,42 +15,42 @@ deno test {{test_code_path}}
 ### Data Struccture
 
 - [x] Stack
-- [x] Queue
-- [x] Doubly Linked List
-- [x] Hash table
-- [x] Maximum heap
+- [ ] Queue
+- [ ] Doubly Linked List
+- [ ] Hash table
+- [ ] Maximum heap
 - [ ] Priority queue
 
 ### Sorting
 
-- [x] Insertion sort
+- [x] Insertion sort :raised_hand:
 - [x] Bubble sort
 - [x] Selection sort
-- [x] Stable sort
+- [ ] Stable sort
 - [ ] Shell sort
-- [x] Merge sort
+- [ ] Merge sort
 - [ ] Quick sort
 - [ ] Counting sort
 
 ### Searching
 
-- [x] Linear search
-- [x] Binary search
-- [x] Exhaustive searcch
+- [ ] Linear search
+- [ ] Binary search
+- [ ] Exhaustive searcch
 
 
 ### Tree
 
-- [x] Rooted trees
-- [x] Binary tree
-- [x] Tree walk
-- [x] Binary search tree 
-- [x] Complete binary tree
+- [ ] Rooted trees
+- [ ] Binary tree
+- [ ] Tree walk
+- [ ] Binary search tree 
+- [ ] Complete binary tree
 
 ### Math
 
 - [ ] Kocch curve
-- [x] Fibonacci number
+- [ ] Fibonacci number
 - [ ] Longest common Subsequence
 - [ ] Matrix chain multiplication
 
