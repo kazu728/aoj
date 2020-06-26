@@ -8,29 +8,32 @@ const push = (opecode: number) => {
   top++;
 };
 
+const calculateResult = (a: number, b: number, operand: Operand): number => {
+  switch (operand) {
+    case "+":
+      return a + b;
+    case "-":
+      return a - b;
+    case "*":
+      return a * b;
+    case "/":
+      return a / b;
+  }
+};
+
 const calculate = (operand: Operand) => {
   const [a, b] = [stack[top - 2], stack[top - 1]];
   if (!(a && b)) throw new Error(`Underflow`);
 
   top -= 2;
-  const result =
-    operand === "+"
-      ? a + b
-      : operand === "-"
-      ? a - b
-      : operand === "*"
-      ? a * b
-      : a / b;
-
-  stack[top] = result;
+  stack[top] = calculateResult(a, b, operand);
   top++;
 };
 
-export default function main<T extends (Operand | number)[]>(input: T) {
+export default function main(input: (Operand | number)[]): number {
   for (let i = 0; i < input.length; i++) {
-    typeof input[i] === "number"
-      ? push(input[i] as number)
-      : calculate(input[i] as Operand);
+    const element = input[i];
+    typeof element === "number" ? push(element) : calculate(element);
   }
   return stack[0];
 }
