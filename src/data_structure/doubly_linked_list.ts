@@ -1,4 +1,4 @@
-export type InputType = (number | [string, number])[];
+export type InputType = [number, ...[string, number][]]
 
 class Node<T> {
   constructor(public key: T, public prev: T, public next: T) {}

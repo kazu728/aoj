@@ -1,4 +1,4 @@
-export type InputType = [number | string, number][];
+export type InputType = [[number, number], ...[string, number][]];
 
 let queue: [string, number][];
 let head = 0;
@@ -22,14 +22,12 @@ const enqueue = (result: [string, number]) => {
 };
 
 export default function main(input: InputType) {
-  
-
   const results = [];
   const [_, quantum] = takeQuantum(input);
   initQueue(input);
 
   let turnAroundTime = 0;
-  
+
   while (queue[head]) {
     const [process, remainingTime] = queue[head];
     const result = remainingTime - quantum;
