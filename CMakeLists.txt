@@ -11,11 +11,11 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 enable_testing()
 
 set(Sources
-  src/tree/ExampleTests.cpp
-  src/tree/Example.cpp
+  src/tree/rooted_tree.cpp
+  src/tree/rooted_tree_test.cpp
 )
 set(Headers
-  src/tree/Example.hpp
+  src/tree/rooted_tree.hpp
 )
 
 add_subdirectory(googletest)
