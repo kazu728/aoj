@@ -1,6 +1,6 @@
 ![](https://github.com/kzmat/algorhythm-learning/workflows/Deno%20CI/badge.svg)
 
-# algorithms-learning
+# AOJ
 - This reository is for my learning
 
 # test
