@@ -1,21 +1,21 @@
 export type InputType<T> = [number, T[]];
 
-export default function main<T>(input: InputType<T>) {
-  const makeSentinelAddedElemets = (): T[] => {
-    const elements = input.filter((e, i): e is T[] => i !== 0).pop();
+export default function main(input: InputType<number>) {
+  const makeSentinelAddedElemets = (): number[] => {
+    const elements = input.filter((e, i): e is number[] => i !== 0).pop();
     if (!elements) throw new Error("Invalid args");
 
-    return [0 as any, ...elements];
+    return [0, ...elements];
   };
 
   return print([...makeSentinelAddedElemets()]);
 }
 
-const print = <T>(elements: T[]) => {
-  const result: any = [];
+const print = (elements: number[]): number[][] => {
+  const result: number[][] = [];
 
-  elements.forEach((e: T, i: number) => {
-    if (!i) return;
+  elements.forEach((e: number, i: number) => {
+    if (!i) return
 
     const node = i;
     const key = e;
