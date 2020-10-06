@@ -13,7 +13,7 @@ export default function main() {
     return val;
   };
 
-  for (let i = 0; i < 44; i++) fib(i);
+  for (let i = 0; i < MAX_LENGTH; i++) fib(i);
 
   return memo;
 }
