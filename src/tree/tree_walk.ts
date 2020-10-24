@@ -39,7 +39,7 @@ export const postOrder = (n: number) => {
   if (n === -1) return;
 
   postOrder(nodes[n].l);
-  
+
   postOrder(nodes[n].r);
   postorderList.push(n);
 

@@ -2,7 +2,7 @@ import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 import main, { InputType, result } from "./priority_queue.ts";
 
 Deno.test("Priority queue", () => {
-  const input: InputType  = [
+  const input: InputType = [
     ["insert", 8],
     ["insert", 2],
     "extract",
@@ -14,6 +14,6 @@ Deno.test("Priority queue", () => {
     "end",
   ];
 
-  main(input)
-  assertEquals(result, [8, 10, 11, 2] );
+  main(input);
+  assertEquals(result, [8, 10, 11, 2]);
 });

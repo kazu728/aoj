@@ -6,16 +6,15 @@ import main from "./dictionary.ts";
 Deno.test("Dictionary", () => {
   const input: InputType = [
     6,
-    ["insert", 'AAA'],
-    ["insert", 'AAC'],
-    ["find", 'AAA'],
-    ["find", 'CCC'],
-    ["insert", 'CCC'],
-    ["find", 'CCC'],
-    ["insert", 'AAA'],
-    ["insert", 'AAA'],
-    
+    ["insert", "AAA"],
+    ["insert", "AAC"],
+    ["find", "AAA"],
+    ["find", "CCC"],
+    ["insert", "CCC"],
+    ["find", "CCC"],
+    ["insert", "AAA"],
+    ["insert", "AAA"],
   ];
 
-  assertEquals(main(input), ['yes', 'no', 'yes']);
+  assertEquals(main(input), ["yes", "no", "yes"]);
 });

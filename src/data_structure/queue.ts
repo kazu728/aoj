@@ -4,33 +4,15 @@ let queue: [string, number][];
 let head = 0;
 let tail = 0;
 
-const initQueue = (input: InputType) => {
-  queue = input.filter((e, i): e is [string, number] => i !== 0);
-  tail = queue.length - 1;
-};
-
-const takeQuantum = (input: InputType) =>
-  input.filter((e, i): e is [number, number] => !i)[0];
-
-const dequeue = () => {
-  head++;
-};
-
-const enqueue = (result: [string, number]) => {
-  queue[++tail] = result;
-  head++;
-};
-
 export default function main(input: InputType) {
   const results = [];
-  const [_, quantum] = takeQuantum(input);
   initQueue(input);
 
   let turnAroundTime = 0;
 
   while (queue[head]) {
     const [process, remainingTime] = queue[head];
-    const result = remainingTime - quantum;
+    const result = remainingTime - quantum(input);
 
     if (result <= 0) {
       turnAroundTime = turnAroundTime + remainingTime;
@@ -46,3 +28,18 @@ export default function main(input: InputType) {
 
   return results;
 }
+
+const initQueue = (input: InputType): void => {
+  queue = input.filter((e, i): e is [string, number] => i !== 0);
+  tail = queue.length - 1;
+};
+
+const quantum = (input: InputType): number =>
+  input.filter((e, i): e is [number, number] => !i)[0][1];
+
+const dequeue = (): number => head++;
+
+const enqueue = (result: [string, number]): void => {
+  queue[++tail] = result;
+  head++;
+};

@@ -15,7 +15,7 @@ const print = (elements: number[]): number[][] => {
   const result: number[][] = [];
 
   elements.forEach((e: number, i: number) => {
-    if (!i) return
+    if (!i) return;
 
     const node = i;
     const key = e;

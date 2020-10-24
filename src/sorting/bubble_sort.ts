@@ -1,12 +1,10 @@
-type inputElement = string | number;
-
-export default function sort<T extends [number, inputElement[]]>(
+export default function sort<T extends [number, any[]]>(
   input: T
-): [inputElement[], number] {
+): [T[1], number] {
   const [length, elements] = input;
 
   let swappedCount = 0;
-  let swap: inputElement;
+  let swap: T;
 
   for (let i = 0; i < length; i++) {
     for (let j = 0; j < length - i; j++) {

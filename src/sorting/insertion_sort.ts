@@ -1,8 +1,4 @@
-import { inputElement } from "./sort.d.ts";
-
-export default function sort<T extends [number, inputElement[]]>(
-  input: T
-): inputElement[] {
+export default function sort<T extends [number, any[]]>(input: T): T[] {
   const [length, elements] = input;
 
   for (let i = 0; i < length; i++) {

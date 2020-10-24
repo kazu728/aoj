@@ -8,7 +8,7 @@ const nodes: Node<number>[] = [];
 
 export default function main(input: InputType<number>) {
   const elementsList = input.filter((e, i): e is number[] => i !== 0);
-  search(elementsList)()
+  search(elementsList)();
 }
 
 const search = (elementsList: number[][]) => {
@@ -16,8 +16,8 @@ const search = (elementsList: number[][]) => {
     const parent = searchParent(i);
     nodes.push(new Node(parent, elements[1], elements[2]));
   });
-  return print
-}
+  return print;
+};
 
 const searchParent = (searchedNode: number): number => {
   let result = -1;
@@ -43,19 +43,17 @@ const print = () => {
       height(0, index),
       location(node)
     );
-  }); 
-}
-
+  });
+};
 
 const siblings = (index: number) => {
-  const parent = nodes[index].p
+  const parent = nodes[index].p;
 
-  if(parent === -1) return -1
+  if (parent === -1) return -1;
 
-  const [leftNode, rightNode] = [nodes[parent].l, nodes[parent].r]
-  return leftNode === index? rightNode: leftNode
-}
-
+  const [leftNode, rightNode] = [nodes[parent].l, nodes[parent].r];
+  return leftNode === index ? rightNode : leftNode;
+};
 
 const degree = (node: Node<number>) => {
   let degree = 0;
