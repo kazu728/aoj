@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals } from "../deps.ts";
 import { inputType } from "./sort.d.ts";
 import sort from "./bubble_sort.ts";
 

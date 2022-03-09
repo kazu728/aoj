@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals } from "../deps.ts";
 import { InputType } from "./doubly_linked_list.ts";
 
 import main from "./doubly_linked_list.ts";

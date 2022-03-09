@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals } from "../deps.ts";
 import { isFound, InputType } from "./binary_search_tree.ts";
 import main, { init } from "./binary_search_tree.ts";
 
@@ -70,7 +70,7 @@ Deno.test("binary search tree find", () => {
 //   init();
 //   const [inorderList, preorderList] = main(input);
 
-  // assertEquals(inorderList, [1, 12, 17, 20, 25, 30, 88]);
-  // assertEquals(preorderList, [30, 12, 1, 20, 17, 25, 88]);
-  // assertEquals(findAnswer, ["yes", "no"]);
+// assertEquals(inorderList, [1, 12, 17, 20, 25, 30, 88]);
+// assertEquals(preorderList, [30, 12, 1, 20, 17, 25, 88]);
+// assertEquals(findAnswer, ["yes", "no"]);
 // });

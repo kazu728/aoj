@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals } from "../deps.ts";
 import main, { InputType } from "./complete_binart_tree.ts";
 
 Deno.test("complete binary tree", () => {
