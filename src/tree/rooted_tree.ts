@@ -1,5 +1,6 @@
+import { KIND } from "./tree.d.ts";
+
 export type RootedTreeInput = [number, ...[...number[]][]];
-type KIND = "root" | "internal node" | "leaf";
 
 export type RootedTreeOutput = {
   node: number;

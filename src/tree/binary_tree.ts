@@ -1,98 +1,72 @@
-type InputType<T> = [number, ...[...T[]][]];
+import { KIND } from "./tree.d.ts";
+import { genNodeTree, Node, MaybeNode } from "./utility.ts";
 
-class Node<U> {
-  constructor(public p: U, public l: U, public r: U) {}
-}
-
-const nodes: Node<number>[] = [];
-
-export default function main(input: InputType<number>) {
-  const elementsList = input.filter((e, i): e is number[] => i !== 0);
-  search(elementsList)()
-}
-
-const search = (elementsList: number[][]) => {
-  elementsList.forEach((elements, i) => {
-    const parent = searchParent(i);
-    nodes.push(new Node(parent, elements[1], elements[2]));
-  });
-  return print
-}
-
-const searchParent = (searchedNode: number): number => {
-  let result = -1;
-
-  nodes.forEach((node, index) => {
-    if (node.l === searchedNode || node.r === searchedNode) {
-      result = index;
-    }
-  });
-
-  return result;
+type Output = {
+  node: number;
+  parent: number;
+  degree: number;
+  height: number;
+  kind: KIND;
 };
 
-const print = () => {
-  nodes.forEach((node, index) => {
-    console.log(
-      `node: %s , parent: %s, siblings : %s, degree: %s, depth: %s, height: %s , %s`,
-      index,
-      node.p,
-      siblings(index),
-      degree(node),
-      depth(0, index),
-      height(0, index),
-      location(node)
-    );
-  }); 
+export type BinaryTreeInput = [number, ...[...number[]][]];
+export type BinaryTreeOutput = Output[];
+type OmitTreeInput = number[][];
+
+const getHeight = (node: Node, height: number): number => {
+  const lheight = node.l === undefined ? height : getHeight(node.l, height + 1);
+  const rHeight = node.r === undefined ? height : getHeight(node.r, height + 1);
+
+  return Math.max(lheight, rHeight);
+};
+
+const getDegree = (node: Node): number => {
+  if (node.l !== undefined && node.r !== undefined) return 2;
+  if (node.l === undefined && node.r !== undefined) return 1;
+  if (node.l !== undefined && node.r === undefined) return 1;
+  return 0;
+};
+
+const getKind = (node: Node): KIND => {
+  if (node.parent?.value === -1) return "root";
+  if (node.l !== undefined || node.r !== undefined) return "internal node";
+  return "leaf";
+};
+
+const traverse = (node: Node, output: BinaryTreeOutput): BinaryTreeOutput => {
+  const height = getHeight(node, 0);
+  const degree = getDegree(node);
+  const kind = getKind(node);
+
+  const o: Output = {
+    node: node.value!,
+    parent: node.parent?.value!,
+    height,
+    degree,
+    kind,
+  };
+  output.push(o);
+
+  if (node.l !== undefined) traverse(node.l, output);
+  if (node.r !== undefined) return traverse(node.r, output);
+
+  return output;
+};
+
+export function main(input: BinaryTreeInput): BinaryTreeOutput {
+  const omitInput: OmitTreeInput = input.filter(
+    (_, i): _ is number[] => i !== 0
+  );
+  const [node, leftNode, rightNode] = omitInput[0];
+
+  const nodeTree: MaybeNode = genNodeTree(
+    omitInput,
+    node,
+    -1,
+    leftNode,
+    rightNode
+  );
+  if (nodeTree === undefined) return [];
+
+  return traverse(nodeTree, []);
 }
-
-
-const siblings = (index: number) => {
-  const parent = nodes[index].p
-
-  if(parent === -1) return -1
-
-  const [leftNode, rightNode] = [nodes[parent].l, nodes[parent].r]
-  return leftNode === index? rightNode: leftNode
-}
-
-
-const degree = (node: Node<number>) => {
-  let degree = 0;
-  if (node.l !== -1) degree++;
-  if (node.r !== -1) degree++;
-
-  return degree;
-};
-
-const depth = (acc: number, index: number): number => {
-  const parent = nodes[index].p;
-  if (parent === -1) return acc;
-
-  acc++;
-  return depth(acc, parent);
-};
-
-const height = (acc: number, index: number): number => {
-  if (index === -1) return acc;
-
-  const [left, right] = [nodes[index].l, nodes[index].r];
-  if (left !== -1 || right !== -1) acc++;
-
-  const [leftHeight, rightHeight] = [
-    height(acc, left) || height(acc, right),
-    height(acc, right) || height(acc, left),
-  ];
-
-  return leftHeight < rightHeight ? rightHeight : leftHeight;
-};
-
-const location = (node: Node<number>): string => {
-  const Node = { ROOT: "root", LEAF: "leaf", INTERNAL_NODE: "internal node" };
-
-  if (node.p === -1) return Node.ROOT;
-
-  if (node.l === -1 && node.r === -1) return Node.LEAF;
-
-  return Node.INTERNAL_NODE;
-};
