@@ -2,13 +2,16 @@ import { MaybeValue } from "./utility.ts";
 
 const PRINT = "print";
 const INSERT = "insert";
+const FIND = "find";
 
 type INSERT = [typeof INSERT, number];
+type FIND = [typeof FIND, number];
 type PRINT = typeof PRINT;
-type OPERATION = INSERT | PRINT;
+
+type OPERATION = INSERT | FIND | PRINT;
 type MaybeBSTNode = BSTNode | undefined;
 
-export type InputType = (number | PRINT | INSERT)[];
+export type InputType = (number | PRINT | INSERT | FIND)[];
 export type OmitInput = OPERATION[];
 
 class BSTNode {
@@ -27,6 +30,10 @@ export function main(input: OmitInput): [number[], number[]] {
         const insertedNode = insert(operand, node);
 
         node = insertedNode!;
+      }
+      if (operatioin === FIND) {
+        const foundNode = find(operand, node);
+        console.log(foundNode ? "yes" : "no");
       }
     }
     switch (operations) {
@@ -67,6 +74,16 @@ const insert = (operand: number, node: MaybeBSTNode): MaybeBSTNode => {
   }
 
   return node;
+};
+
+const find = (operand: number, node: MaybeBSTNode): boolean => {
+  const value = node?.value;
+
+  if (value === operand) return true;
+  if (value !== undefined && operand < value) return find(operand, node?.l);
+  if (value !== undefined && value < operand) return find(operand, node?.r);
+
+  return false;
 };
 
 const print = (node: BSTNode): [number[], number[]] => {

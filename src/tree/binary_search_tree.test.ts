@@ -22,28 +22,28 @@ Deno.test("binary search tree insert", () => {
   assertEquals(inorderlist, [1, 12, 17, 20, 25, 30, 88]);
 });
 
-// Deno.test("binary search tree find", () => {
-//   const input: InputType = [
-//     10,
-//     ["insert", 30],
-//     ["insert", 88],
-//     ["insert", 12],
-//     ["insert", 1],
-//     ["insert", 20],
-//     ["find", 12],
-//     ["insert", 17],
-//     ["insert", 25],
-//     ["find", 16],
-//     "print",
-//   ];
+Deno.test("binary search tree find", () => {
+  const input: InputType = [
+    10,
+    ["insert", 30],
+    ["insert", 88],
+    ["insert", 12],
+    ["insert", 1],
+    ["insert", 20],
+    ["find", 12],
+    ["insert", 17],
+    ["insert", 25],
+    ["find", 16],
+    "print",
+  ];
 
-// init();
-// const [inorderList, preorderList] = main(input);
+  const omitInput = input.filter((e, i) => i !== 0) as OmitInput;
 
-// assertEquals(inorderList, [1, 12, 17, 20, 25, 30, 88]);
-// assertEquals(preorderList, [30, 12, 1, 20, 17, 25, 88]);
-// assertEquals(isFound, ["yes", "no"]);
-// });
+  const [preorderlist, inorderlist] = main(omitInput);
+
+  assertEquals(preorderlist, [30, 12, 1, 20, 17, 25, 88]);
+  assertEquals(inorderlist, [1, 12, 17, 20, 25, 30, 88]);
+});
 
 // Deno.test("binary search tree delete", () => {
 //   const input: InputType<number>[] = [
