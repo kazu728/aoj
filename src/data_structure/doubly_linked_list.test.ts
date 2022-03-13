@@ -1,7 +1,7 @@
 import { assertEquals } from "../deps.ts";
-import { InputType } from "./doubly_linked_list.ts";
+import { InputType, OmitInput } from "./doubly_linked_list.ts";
 
-import main from "./doubly_linked_list.ts";
+import { main } from "./doubly_linked_list.ts";
 
 Deno.test("Doubly linked list", () => {
   const input: InputType = [
@@ -14,6 +14,7 @@ Deno.test("Doubly linked list", () => {
     ["insert", 6],
     ["delete", 5],
   ];
+  const omitInput = input.filter((_, i) => i !== 0) as OmitInput<number>;
 
-  assertEquals(main(input), [6, 1, 2]);
+  assertEquals(main(omitInput), [6, 1, 2]);
 });
