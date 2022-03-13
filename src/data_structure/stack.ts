@@ -1,39 +1,38 @@
-export type Operand = "+" | "-" | "*" | "/";
+const OPERAND = {
+  PLUS: "+",
+  MINUS: "-",
+  ASTERISK: "*",
+  SLASH: "/",
+} as const;
 
-const stack: number[] = [];
-let top = 0;
+export type Operand = typeof OPERAND[keyof typeof OPERAND];
+export type InputType = Operand | number;
 
-const push = (opecode: number) => {
-  stack[top] = opecode;
-  top++;
-};
+export function main(input: InputType[]): number {
+  const stack: number[] = [];
+  let p = 0;
 
-const calculateResult = (a: number, b: number, operand: Operand): number => {
-  switch (operand) {
-    case "+":
-      return a + b;
-    case "-":
-      return a - b;
-    case "*":
-      return a * b;
-    case "/":
-      return a / b;
+  for (const e of input) {
+    if (Number.isInteger(e)) {
+      stack[p++] = Number(e);
+      continue;
+    }
+    const a = stack[p - 2];
+    const b = stack[p - 1];
+    p -= 2;
+
+    switch (e) {
+      case OPERAND.PLUS:
+        stack[p++] = a + b;
+        break;
+      case OPERAND.MINUS:
+        stack[p++] = a - b;
+        break;
+      case OPERAND.ASTERISK:
+        stack[p++] = a * b;
+        break;
+    }
   }
-};
-
-const calculate = (operand: Operand) => {
-  const [a, b] = [stack[top - 2], stack[top - 1]];
-  if (!(a && b)) throw new Error(`Underflow`);
-
-  top -= 2;
-  stack[top] = calculateResult(a, b, operand);
-  top++;
-};
-
-export default function main(input: (Operand | number)[]): number {
-  for (let i = 0; i < input.length; i++) {
-    const element = input[i];
-    typeof element === "number" ? push(element) : calculate(element);
-  }
-  return stack[0];
+  
+  return stack[p - 1];
 }

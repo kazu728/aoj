@@ -1,66 +1,30 @@
-type InputType<T> = [number, ...[...T[]][]];
+import { MaybeNode } from "./utility.ts";
 
-class Node<U> {
-  constructor(public p: U, public l: U, public r: U) {}
+export function preorder(node: MaybeNode, l: number[]): number[] {
+  if (node?.value === undefined) return l;
+
+  l.push(node.value);
+  preorder(node?.l, l);
+  preorder(node?.r, l);
+
+  return l;
 }
 
-const preorderList: number[] = [];
-const inorderList: number[] = [];
-const postorderList: number[] = [];
+export function inorder(node: MaybeNode, l: number[]): number[] {
+  if (node?.value === undefined) return l;
 
-const nodes: Node<number>[] = [];
+  inorder(node?.l, l);
+  l.push(node.value!);
+  inorder(node?.r, l);
 
-export default function init(input: InputType<number>) {
-  const elementsList = input.filter((e, i): e is number[] => i !== 0);
-  search(elementsList);
+  return l;
 }
+export function postorder(node: MaybeNode, l: number[]): number[] {
+  if (node?.value === undefined) return l;
 
-export const preorder = (n: number) => {
-  if (n === -1) return;
-  preorderList.push(n);
+  postorder(node?.l, l);
+  postorder(node?.r, l);
+  l.push(node.value!);
 
-  preorder(nodes[n].l);
-  preorder(nodes[n].r);
-
-  return preorderList;
-};
-
-export const inorder = (n: number) => {
-  if (n === -1) return;
-
-  inorder(nodes[n].l);
-  inorderList.push(n);
-  inorder(nodes[n].r);
-
-  return inorderList;
-};
-
-export const postOrder = (n: number) => {
-  if (n === -1) return;
-
-  postOrder(nodes[n].l);
-  
-  postOrder(nodes[n].r);
-  postorderList.push(n);
-
-  return postorderList;
-};
-
-const search = (elementsList: number[][]) => {
-  elementsList.forEach((elements, i) => {
-    const parent = searchParent(i);
-    nodes.push(new Node(parent, elements[1], elements[2]));
-  });
-};
-
-const searchParent = (searchedNode: number): number => {
-  let result = -1;
-
-  nodes.forEach((node, index) => {
-    if (node.l === searchedNode || node.r === searchedNode) {
-      result = index;
-    }
-  });
-
-  return result;
-};
+  return l;
+}

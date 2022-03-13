@@ -3,12 +3,11 @@
 # AOJ
 - This reository is for my learning
 
-# test
+# Test
 ```
-# Test all 
-deno test
+# Test
+$ deno test --allow-all
 
-# Test indivusual argorithm
-deno test {{test_code_path}}
+# Test with watching
+deno test --watch--allow-all
 ```
-
