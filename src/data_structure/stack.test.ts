@@ -1,10 +1,8 @@
 import { assertEquals } from "../deps.ts";
-import main, { Operand } from "./stack.ts";
+import { main, InputType } from "./stack.ts";
 
 Deno.test("Stack", () => {
-  const input: (Operand | number)[] = [1, 2, "+", 3, 4, "-", "*"];
-
-  main(input);
+  const input: InputType[] = [1, 2, "+", 3, 4, "-", "*"];
 
   assertEquals(main(input), -3);
 });
