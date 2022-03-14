@@ -1,25 +1,19 @@
-export type InputType = [number, ...number[][]];
+export type Input = [number, ...number[][]];
+export type Output = number[][];
 
-export default function main(input: InputType) {
-  const length = input.filter((e, i): e is number => i === 0)[0];
-  const vertexs = createVertex(input);
+export function main(input: Input): Output {
+  const length = input[0];
 
-  const matrix: number[][] = initMatrix(length);
+  const matrix: number[][] = new Array(length);
+  for (let i = 0; i < length; i++) matrix[i] = new Array(length).fill(0);
 
-  for (let i = 0; i < length; i++) {
-    for (let j = 0; j < length; j++) {
-      matrix[i][vertexs[i][j] - 1] = 1;
-    }
+  const list = input.filter((_, i): _ is number[] => i !== 0);
+
+  for (const l of list) {
+    const [vertex, , ...edges] = l;
+
+    for (const e of edges) matrix[vertex - 1][e - 1] = 1;
   }
 
   return matrix;
 }
-
-const createVertex = (input: InputType) => {
-  return input
-    .filter((e, i): e is number[] => i !== 0)
-    .map((e) => e.filter((_, i) => i >= 2));
-};
-
-const initMatrix = (length: number) =>
-  Array.from(new Array(length), () => new Array(length).fill(0));
