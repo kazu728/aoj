@@ -1,34 +1,24 @@
-export type InputType<T> = [number, T[]][];
+export type InputType<T> = [T[], T[]];
 
-export default function search<T>(input: InputType<T>) {
+const binarySearch = <T>(a: T[], l: number, r: number, b: T): boolean => {
+  const middle = Math.ceil((l + r) / 2);
+
+  if (a[middle] === b) return true;
+  if (middle === 1 || middle === a.length) return false;
+  if (a[middle] < b) return binarySearch(a, middle, r, b);
+
+  return binarySearch(a, l, middle, b);
+};
+
+export function main<T>(input: InputType<T>): number {
   let count = 0;
 
-  const [n, S] = input.filter((_, i) => !i)[0];
-  const [q, T] = input.filter((_, i) => i)[0];
+  const [a, b] = input;
 
-  const binary_search = (key: T, begin = 0, end = n - 1): boolean => {
-    const middle = Math.floor((begin + end) / 2);
+  const sentinelArrays = [undefined, ...a];
 
-    if (begin === end - 1) {
-      if (S[begin] === key) return true;
-      if (S[end] === key) return true;
-
-      return false;
-    }
-
-    if (S[middle] === key) return true;
-
-    if (S[middle] < key) {
-      begin = middle + 1;
-    } else {
-      end = middle;
-    }
-
-    return binary_search(key, begin, end);
-  };
-
-  for (let i = 0; i < q; i++) {
-    if (binary_search(T[i])) count++;
+  for (const e of b) {
+    if (binarySearch(sentinelArrays, 0, sentinelArrays.length, e)) count++;
   }
 
   return count;
