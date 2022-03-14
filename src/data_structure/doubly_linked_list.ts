@@ -1,58 +1,57 @@
-export type InputType = [number, ...[string, number][]]
+const INSERT = "insert";
+const DELETE = "delete";
+type OPERATION = typeof INSERT | typeof DELETE;
 
-class Node<T> {
-  constructor(public key: T, public prev: T, public next: T) {}
+export type InputType = [number, ...[OPERATION, number][]];
+export type OmitInput<T> = [OPERATION, T][];
+
+class LinkedlistNode<T> {
+  value: T | undefined;
+  prev: LinkedlistNode<T> | undefined;
+  next: LinkedlistNode<T> | undefined;
 }
 
-let linkedList: Node<number>[] = [];
-const answerList: number[] = [];
+type MyabeLinkedListNode<T> = LinkedlistNode<T> | undefined;
 
-const answer = (key: number) => {
+export function main<T>(input: OmitInput<T>): T[] {
+  const sentinelNode = new LinkedlistNode<T>();
 
-  for (let i = 0; i < linkedList.length; i++) {
-    if (linkedList[i].key !== key) continue;
+  const insertNode = (operand: T): void => {
+    const sentinelNodeNext = sentinelNode.next;
 
-    if (key !== -1) answerList.push(key);
-    if (linkedList[i].next === -1) return;
+    const linkedListNode = new LinkedlistNode<T>();
+    linkedListNode.value = operand;
+    linkedListNode.next = sentinelNodeNext;
+    linkedListNode.prev = sentinelNode;
 
-    answer(linkedList[i].next);
-  }
-  return answerList;
-};
+    sentinelNode.next = linkedListNode;
 
-const insertNode = (operand: number) => {
-  let length = linkedList.length;
+    if (sentinelNodeNext !== undefined) {
+      sentinelNodeNext.prev = linkedListNode;
+    }
+  };
 
-  linkedList[length] = new Node(
-    operand,
-    linkedList[0].key,
-    linkedList[length - 1].key
-  );
-  linkedList[length - 1].prev = operand;
+  const deleteNode = (node: MyabeLinkedListNode<T>, operand: T): void => {
+    if (node?.value === undefined) return;
+    if (node?.value !== operand) return deleteNode(node.next, operand);
 
-  linkedList[0].next = operand;
-};
+    const nextNode = node.next;
+    node.prev!.next = node.next;
+    if (nextNode?.prev !== undefined) {
+      nextNode.prev = node.prev;
+    }
+  };
 
-const deleteNode = (operand: number) => {
-  for (let i = 0; i < linkedList.length; i++) {
-    if (linkedList[i].key !== operand) continue;
-
-    linkedList[i + 1].next = linkedList[i].next;
-    linkedList[i - 1].prev = linkedList[i].prev;
-  }
-};
-
-export default function main(input: InputType) {
-  const length = input.filter((_, i): _ is number => !i)[0];
-  const elements = input.filter((_, i): _ is [string, number] => i !== 0);
-
-  // sentinel node
-  linkedList[0] = new Node(-1, -1, -1);
-
-  for (let i = 0; i < length; i++) {
-    const [order, operand] = elements[i];
-    order === "insert" ? insertNode(operand) : deleteNode(operand);
+  for (const [operation, operand] of input) {
+    if (operation === "insert") insertNode(operand);
+    if (operation === "delete") deleteNode(sentinelNode.next, operand);
   }
 
-  return answer(-1);
+  const gen = <T>(node: MyabeLinkedListNode<T>, l: T[]): T[] => {
+    if (node?.value === undefined) return l;
+    l.push(node.value);
+    return gen(node.next, l);
+  };
+
+  return gen<T>(sentinelNode.next, []);
 }

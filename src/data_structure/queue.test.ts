@@ -1,6 +1,5 @@
 import { assertEquals } from "../deps.ts";
-import { InputType } from "./queue.ts";
-import main from "./queue.ts";
+import { InputType, main } from "./queue.ts";
 
 Deno.test("Queue", () => {
   const input: InputType = [
@@ -11,7 +10,9 @@ Deno.test("Queue", () => {
     ["p4", 350],
     ["p5", 20],
   ];
-  assertEquals(main(input), [
+  const omitInput = input.filter((_, i) => i !== 0) as [string, number][];
+
+  assertEquals(main(100, omitInput), [
     ["p2", 180],
     ["p5", 400],
     ["p1", 450],

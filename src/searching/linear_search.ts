@@ -1,19 +1,19 @@
-export type InputType<T> = [number, T[]][];
+export type InputType<T> = [T[], T[]];
 
-let searchedCount = 0;
+const isIncluded = <T>(a: T[], i: number, b: T): boolean => {
+  if (a[i] === undefined) return false;
+  if (a[i] === b) return true;
 
-export default function search<T>(input: InputType<T>) {
-  const [n, S] = input.filter((_, i) => !i)[0];
-  const [q, T] = input.filter((_, i) => i)[0];
+  return isIncluded(a, i + 1, b);
+};
 
-  for (let i = 0; i < n; i++) {
-    // sentinel element
-    T[q] = S[i];
+export function main<T>(input: InputType<T>): number {
+  let count = 0;
+  const [a, b] = input;
 
-    let count = 0;
-    while (S[i] !== T[count]) count++;
-
-    if (count !== T.length - 1) searchedCount++;
+  for (let i = 0; i < b.length; i++) {
+    if (isIncluded(a, 0, b[i])) count++;
   }
-  return searchedCount;
+
+  return count;
 }

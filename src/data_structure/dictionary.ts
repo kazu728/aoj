@@ -1,58 +1,64 @@
-export type InputType = [number, ...[string, string][]];
+const INSERT = "insert";
+const FIND = "find";
 
-const MAX = 1046527;
-let dictionary: string[] = new Array(MAX);
-const result: string[] = [];
+type OPERATION = typeof INSERT | typeof FIND;
+export type InputType = [OPERATION, string][];
 
-export default function main(input: InputType) {
-  const elements = input.filter((e, i): e is [string, string] => i !== 0);
+const MAX_SIZE = 65536;
+const GLOBAL_DICTIONARY: string[] = new Array(MAX_SIZE);
 
-  elements.forEach((element, i) => {
-    const [instruction, literal] = element;
-    if (instruction === "insert") insert(literal, 1);
-    if (instruction === "find") find(literal, 1);
-  });
+const h1 = (n: number): number => n % MAX_SIZE;
+const h2 = (n: number, i: number) => i + (n % (MAX_SIZE - 1));
 
-  return result;
-}
+const hash = (n: number, i: number): number => h1(n) + 1 + h2(n, i);
 
-const insert = (literal: string, i: number) => {
-  const key = Number(getKey(literal));
+const genIndex = (s: string): number =>
+  Number(
+    s
+      .split("")
+      .map((t) => t.charCodeAt(0))
+      .join("")
+  );
 
-  let h = (h1(key) + i * h2(key)) % MAX;
+const find = (s: string, i: number): boolean => {
+  let index = hash(genIndex(s), i);
 
-  while (dictionary[h]) {
-    i++;
-    h = (h1(key) + i * h2(key)) % MAX;
+  if (GLOBAL_DICTIONARY[index] === s) return true;
+
+  while (GLOBAL_DICTIONARY[index] !== s) {
+    if (GLOBAL_DICTIONARY[index] === undefined) return false;
+
+    index = hash(genIndex(s), i + 1);
+  }
+  return true;
+};
+
+const insert = (s: string, i: number): void => {
+  let index = hash(genIndex(s), i);
+
+  while (GLOBAL_DICTIONARY[index] !== undefined) {
+    if (GLOBAL_DICTIONARY[index] === s) break;
+    index = hash(genIndex(s), i + 1);
   }
 
-  dictionary[h] = literal;
+  GLOBAL_DICTIONARY[index] = s;
 };
 
-const find = (literal: string, i: number) => {
-  const key = Number(getKey(literal));
-  const h = (h1(key) + i * h2(key)) % MAX;
+export function main(input: InputType): boolean[] {
+  const output: boolean[] = [];
 
-  dictionary[h] === literal ? result.push("yes") : result.push("no");
-};
+  for (const e of input) {
+    const [operation, operand] = e;
 
-const getKey = (literal: string): string => {
-  return literal
-    .split("")
-    .map((char) => {
-      switch (char) {
-        case "A":
-          return 1;
-        case "C":
-          return 2;
-        case "G":
-          return 3;
-        case "T":
-          return 4;
-      }
-    })
-    .join("");
-};
+    switch (operation) {
+      case INSERT:
+        insert(operand, 0);
+        break;
+      case FIND:
+        output.push(find(operand, 0) ? true : false);
+        break;
+    }
+  }
 
-const h1 = (key: number) => key % MAX;
-const h2 = (key: number) => 1 + (key % (MAX - 1));
+  return output;
+}

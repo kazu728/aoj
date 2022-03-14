@@ -1,11 +1,8 @@
 import { assertEquals } from "../deps.ts";
-import { InputType } from "./dictionary.ts";
-
-import main from "./dictionary.ts";
+import { InputType, main } from "./dictionary.ts";
 
 Deno.test("Dictionary", () => {
   const input: InputType = [
-    6,
     ["insert", "AAA"],
     ["insert", "AAC"],
     ["find", "AAA"],
@@ -16,5 +13,5 @@ Deno.test("Dictionary", () => {
     ["insert", "AAA"],
   ];
 
-  assertEquals(main(input), ["yes", "no", "yes"]);
+  assertEquals(main(input), [true, false, true]);
 });

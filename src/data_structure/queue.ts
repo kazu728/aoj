@@ -1,48 +1,37 @@
 export type InputType = [[number, number], ...[string, number][]];
+export type OmitInput = [string, number][];
+export type Output = [string, number][];
 
-let queue: [string, number][];
-let head = 0;
-let tail = 0;
+const MAX_LENGTH = 65536;
 
-const initQueue = (input: InputType) => {
-  queue = input.filter((e, i): e is [string, number] => i !== 0);
-  tail = queue.length - 1;
-};
+export function main(quantum: number, input: OmitInput): Output {
+  const output: Output = [];
 
-const takeQuantum = (input: InputType) =>
-  input.filter((e, i): e is [number, number] => !i)[0];
-
-const dequeue = () => {
-  head++;
-};
-
-const enqueue = (result: [string, number]) => {
-  queue[++tail] = result;
-  head++;
-};
-
-export default function main(input: InputType) {
-  const results = [];
-  const [_, quantum] = takeQuantum(input);
-  initQueue(input);
+  const queue: [string, number][] = input;
 
   let turnAroundTime = 0;
+  let head = 0;
+  let tail = input.length;
 
-  while (queue[head]) {
-    const [process, remainingTime] = queue[head];
-    const result = remainingTime - quantum;
+  while (head !== tail) {
+    const [key, value] = queue[head];
 
-    if (result <= 0) {
-      turnAroundTime = turnAroundTime + remainingTime;
-      results.push([process, turnAroundTime]);
-      dequeue();
+    if (value - quantum === 0) {
+      turnAroundTime += quantum;
+      output.push([key, turnAroundTime]);
+    } else if (value - quantum < 0) {
+      turnAroundTime += value;
+      output.push([key, turnAroundTime]);
+    } else {
+      const rest = value - quantum;
+      queue[tail] = [key, rest];
+      turnAroundTime += quantum;
+
+      tail = tail + 1 === MAX_LENGTH ? 0 : tail + 1;
     }
 
-    if (result > 0) {
-      turnAroundTime += 100;
-      enqueue([process, result]);
-    }
+    head = head + 1 === MAX_LENGTH ? 0 : head + 1;
   }
 
-  return results;
+  return output;
 }
