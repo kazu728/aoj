@@ -3,11 +3,11 @@
 # AOJ
 - This reository is for my learning
 
-# Test
+## Test
 ```
 # Test
 $ deno test --allow-all
 
 # Test with watching
-deno test --watch--allow-all
+deno test --watch --allow-all
 ```
