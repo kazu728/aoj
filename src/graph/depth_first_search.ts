@@ -3,23 +3,28 @@ export type Output = number[];
 
 export function main(input: Input): Output {
   const todo: number[] = [];
-  const seen: number[] = [];
+  const visited = [0];
 
-  const [vertex, n, ..._] = input[0];
-  todo.push(vertex);
-  seen.push(vertex);
+  let current = 1;
 
-  while (todo.length !== 0 || seen.length === 0) {
-    const node = todo.pop();
-    if (node === undefined) break;
-    const [_, n, ...edges] = input[node - 1];
-
-    for (const edge of edges) {
-      if (seen.includes(edge)) continue;
-      todo.push(edge);
-      seen.push(edge);
+  while (todo.length !== 0 || visited.length === 1) {
+    if (visited.includes(current)) {
+      if (todo.pop() == undefined) break;
     }
+
+    const [vertex, edgeNumber, ...edges] = input[current - 1];
+
+    visited.push(vertex);
+
+    for (let i = edgeNumber; 0 <= i; i--) todo.push(edges[i]);
+
+    let next = todo.pop();
+    while (next === undefined) {
+      next = todo.pop();
+    }
+
+    current = next;
   }
 
-  return seen;
+  return visited.slice(1, visited.length);
 }
