@@ -1,6 +1,7 @@
 import { assertEquals } from "../deps.ts";
-import { genNodeTree, Node } from "./utility.ts";
 import { inorder, postorder, preorder } from "./tree_walk.ts";
+import { genNodeTree, Node } from "./utility.ts";
+
 type InputType = [number, ...[...number[]][]];
 
 const input: InputType = [
@@ -17,7 +18,7 @@ const input: InputType = [
 ];
 const omitInput = input.filter((e, i): e is number[] => i !== 0);
 const [node, left, right] = omitInput[0];
-const treeNode = genNodeTree(omitInput, node, -1, left, right) as Node;
+const treeNode = genNodeTree(omitInput, node, undefined, left, right) as Node;
 
 Deno.test("preorder", () => {
   assertEquals(preorder(treeNode, []), [0, 1, 2, 3, 4, 5, 6, 7, 8]);

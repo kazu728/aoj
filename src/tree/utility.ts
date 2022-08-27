@@ -10,33 +10,29 @@ export class Node {
 
 export const genNodeTree = (
   input: number[][],
-  nodeNumber: number,
-  parent: number,
+  key: number,
+  parent: MaybeNode,
   l: number,
   r: number
-): Node | undefined => {
-  const node = new Node();
+): MaybeNode => {
+  if (!input[key]) return undefined;
 
-  if (!input[nodeNumber]) return undefined;
+  const currentNode = new Node();
 
-  node.value = nodeNumber;
-  const parentNode = new Node();
-  parentNode.value = parent;
-  node.parent = parentNode;
+  currentNode.value = key;
+  currentNode.parent = parent;
 
   if (l !== -1) {
-    if (!input[l]) return;
     const [_, childNodeL, childNodeR] = input[l];
 
-    node.l = genNodeTree(input, l, nodeNumber, childNodeL, childNodeR);
+    currentNode.l = genNodeTree(input, l, currentNode, childNodeL, childNodeR);
   }
 
   if (r !== -1) {
-    if (!input[r]) return;
     const [_, childNodeL, childNodeR] = input[r];
 
-    node.r = genNodeTree(input, r, nodeNumber, childNodeL, childNodeR);
+    currentNode.r = genNodeTree(input, r, currentNode, childNodeL, childNodeR);
   }
 
-  return node;
+  return currentNode;
 };
