@@ -1,20 +1,20 @@
 import { MaybeValue } from "./utility.ts";
 
-const PRINT = "print";
-const INSERT = "insert";
-const FIND = "find";
-const DELETE = "delete";
+const OPERATION = {
+  PRINT: "print",
+  INSERT: "insert",
+  FIND: "find",
+  DELETE: "delete",
+} as const;
 
-type INSERT = [typeof INSERT, number];
-type FIND = [typeof FIND, number];
-type DELETE = [typeof DELETE, number];
-type PRINT = typeof PRINT;
+type OPERATION = typeof OPERATION[keyof typeof OPERATION];
 
-type OPERATION = INSERT | FIND | DELETE | PRINT;
 type MaybeBSTNode = BSTNode | undefined;
 
-export type InputType = (number | PRINT | INSERT | DELETE | FIND)[];
-export type OmitInput = OPERATION[];
+export type InputType = (
+  | Extract<OPERATION, "print">
+  | [Exclude<OPERATION, "print">, number]
+)[];
 
 class BSTNode {
   value: MaybeValue;
@@ -23,7 +23,7 @@ class BSTNode {
   r: MaybeBSTNode;
 }
 
-export function main(input: OmitInput): [number[], number[]] {
+export function main(input: InputType): [number[], number[]] {
   let node: MaybeBSTNode = new BSTNode();
 
   const setNode = (bstNode: MaybeBSTNode) => (node = bstNode);
@@ -32,24 +32,25 @@ export function main(input: OmitInput): [number[], number[]] {
     if (Array.isArray(operations)) {
       const [operatioin, operand] = operations;
       switch (operatioin) {
-        case INSERT:
+        case OPERATION.INSERT:
           setNode(insert(operand, node));
           break;
-        case FIND:
+        case OPERATION.FIND:
           find(operand, node) === undefined ? "no" : "yes";
           break;
-        case DELETE:
+        case OPERATION.DELETE: {
           const targetNode = find(operand, node);
           if (targetNode === undefined) continue;
           const reconstructedNode = deleteNode(targetNode);
           if (reconstructedNode !== undefined) setNode(reconstructedNode);
           break;
+        }
         default:
           throw new Error("Unexpected input");
       }
     }
     switch (operations) {
-      case PRINT:
+      case OPERATION.PRINT:
         return print(node);
     }
   }
