@@ -1,10 +1,9 @@
-export function main(a: number[], b: number[]): boolean[] {
-  return b.map((n) => canDivide(n, a, 0));
-}
-
-const canDivide = (n: number, a: number[], i: number): boolean => {
-  if (n === 0) return true;
+const canDivide = (a: number[], n: number, i: number): boolean => {
   if (a.length < i) return false;
+  if (n === 0) return true;
 
-  return canDivide(n, a, i + 1) || canDivide(n - a[i], a, i + 1);
+  return canDivide(a, n, i + 1) || canDivide(a, n - a[i], i + 1);
 };
+
+export const main = (a: number[], b: number[]) =>
+  b.map((n) => canDivide(a, n, 0));
