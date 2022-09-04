@@ -1,21 +1,22 @@
-const merge = <T>(l: T[], i: number, r: T[], j: number, output: T[]): T[] => {
-  if (i === l.length && j === r.length) return output;
-
-  if (i < l.length && j < r.length) {
-    return l[i] <= r[j]
-      ? merge(l, i + 1, r, j, [...output, l[i]])
-      : merge(l, i, r, j + 1, [...output, r[j]]);
-  }
-
-  if (i < l.length) return merge(l, i + 1, r, j, [...output, l[i]]);
-  return merge(l, i, r, j + 1, [...output, r[j]]);
-};
-
-export function mergeSort<T>(input: T[]): T[] {
+export function main<T>(input: T[]): T[] {
   if (input.length <= 1) return input;
 
-  const middle = Math.floor(input.length / 2);
-  const [left, right] = [input.slice(0, middle), input.slice(middle)];
+  const m = Math.floor(input.length / 2);
+  const [l, r] = [input.slice(0, m), input.slice(m, input.length)];
 
-  return merge(mergeSort(left), 0, mergeSort(right), 0, []);
+  return merge(main(l), 0, main(r), 0, []);
 }
+
+const merge = <T>(l: T[], i: number, r: T[], j: number, acc: T[]): T[] => {
+  const [le, re] = [l[i], r[j]];
+
+  if (le === undefined && re === undefined) return acc;
+
+  if ((le === undefined && re !== undefined) || re < le)
+    return merge(l, i, r, j + 1, [...acc, re]);
+
+  if ((le !== undefined && re === undefined) || le <= re)
+    return merge(l, i + 1, r, j, [...acc, le]);
+
+  throw new Error("Unexpected");
+};
