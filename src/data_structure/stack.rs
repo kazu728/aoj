@@ -11,7 +11,7 @@ where
     T: Copy,
 {
     pub head: usize,
-    pub list: Vec<T>,
+    pub buffer: Vec<T>,
 }
 
 impl<T> Stack<T>
@@ -31,7 +31,7 @@ where
     pub fn new(initial_value: T) -> Self {
         Stack {
             head: 0,
-            list: vec![initial_value; STACK_CAPACITY],
+            buffer: vec![initial_value; STACK_CAPACITY],
         }
     }
 
@@ -48,7 +48,7 @@ where
     /// ```
     pub fn push(&mut self, value: T) {
         self.head += 1;
-        self.list[self.head] = value
+        self.buffer[self.head] = value
     }
 
     /// Pop from stack
@@ -64,8 +64,8 @@ where
     ///
     /// ```
     pub fn pop(&mut self) -> Option<T> {
-        if self.head < self.list.len() {
-            let current = Some(self.list[self.head]);
+        if self.head < self.buffer.len() {
+            let current = Some(self.buffer[self.head]);
             self.head -= 1;
             return current;
         }
