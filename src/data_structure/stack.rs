@@ -26,7 +26,7 @@ where
     ///
     /// let stack = Stack::new(0);
     /// assert_eq!(stack.head, 0);
-    /// assert_eq!(stack.list.len(), 100);
+    /// assert_eq!(stack.buffer.len(), 100);
     /// ```
     pub fn new(initial_value: T) -> Self {
         Stack {
@@ -44,7 +44,7 @@ where
     /// let mut stack = Stack::new(0);
     /// stack.push(5);
     /// assert_eq!(stack.head, 1);
-    /// assert_eq!(stack.list[stack.head], 5);
+    /// assert_eq!(stack.buffer[stack.head], 5);
     /// ```
     pub fn push(&mut self, value: T) {
         self.head += 1;
