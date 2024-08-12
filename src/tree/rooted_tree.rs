@@ -34,7 +34,7 @@ pub fn to_vec(
     acc: &mut Vec<Node>,
 ) -> Result<Vec<Node>, RootedTreeError> {
     let (id, children_count, children) = (raw_node[0], raw_node[1], &raw_node[2..]);
-    let kind = NodeKind::new(id, children_count);
+    let kind = NodeKind::new(id as i8, children_count);
 
     acc.push(Node::new(id, depth, parent_id, kind, children.to_vec()));
 
