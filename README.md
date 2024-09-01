@@ -1,13 +1,12 @@
-![](https://github.com/kzmat/algorhythm-learning/workflows/Deno%20CI/badge.svg)
+[![test](https://github.com/kazu728/aoj/actions/workflows/test.yaml/badge.svg)](https://github.com/kazu728/aoj/actions/workflows/test.yaml)
 
 # AOJ
+
 - This reository is for my learning
 
 ## Test
+
 ```
 # Test
-$ deno test --allow-all
-
-# Test with watching
-deno test --watch --allow-all
+$ cargo test
 ```
